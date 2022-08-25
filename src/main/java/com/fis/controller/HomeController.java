@@ -25,7 +25,7 @@ public class HomeController {
     @GetMapping("/contact")
     public ModelAndView contactPage() {
         ModelAndView modelAndView = new ModelAndView("contact");
-        modelAndView.addObject("user1", new User());
+        modelAndView.addObject("user", new User());
         return modelAndView;
     }
     @PostMapping("/sendMessage")

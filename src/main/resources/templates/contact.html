@@ -24,8 +24,7 @@
         <div class="card-columns">
 
             <div class="card-body">
-                local:98080/sendMessage?name=2342&email=345
-                <form method="post" th:action="@{/sendMessage}" th:object="${user1}" class="form-control">
+                <form method="post" th:action="@{/sendMessage}" th:object="${user}" class="form-control">
                     <input id="name" placeholder="Enter Name" required type="text"
                            th:field="*{name}" class="form-control"/>
                     <br>

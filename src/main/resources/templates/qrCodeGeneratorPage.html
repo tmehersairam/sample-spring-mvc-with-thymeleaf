@@ -17,14 +17,14 @@
     </a>
 
 </nav>
-<div class="container text-center" style="margin-top:90px">
+<div class="container text-center" style="margin-top:10vh">
     <div class="card card-body">
         <h1>QR Code generator</h1>
         <br>
         <div class="bg-light">
 
             <div class="card-body">
-                <form method="post" th:object="${user}" class="form-control">
+                <form method="post" th:object="${user}" >
                     <input id="name" placeholder="Enter Name" required type="text"
                            th:field="*{name}" class="form-control"/>
                     <br>
@@ -40,11 +40,11 @@
                     <input id="height" placeholder="Enter height for QR Code" required type="number" min="10" max="500"
                            name="height" class="form-control"/>
                     <br>
-                    <div class="row">
+                    <div class="row justify-content-around">
                         <input type="submit" formaction="/getQrCode/" formmethod="post" value="Generate QR"
-                               class="form-control col btn btn-success">
+                               class=" col-4 btn btn-success">
                         <input type="submit" formaction="/showQRCode/" formmethod="post" value="Show QR"
-                               class="form-control col btn btn-info">
+                               class=" col-4 btn btn-info">
                     </div>
                 </form>
 

@@ -2,50 +2,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="ISO-8859-1">
-  <title>Sample Spring MVC App </title>
-  <link href="webjars/bootstrap/5.2.0/css/bootstrap.min.css"
-        rel="stylesheet">
-  <script src="webjars/jquery/3.6.0/jquery.min.js"></script>
-  <script src="webjars/bootstrap/5.2.0/js/bootstrap.min.js"></script>
+    <meta charset="ISO-8859-1">
+    <title>Sample Spring MVC App </title>
+    <link href="webjars/bootstrap/5.2.0/css/bootstrap.min.css"
+          rel="stylesheet">
+    <script src="webjars/jquery/3.6.0/jquery.min.js"></script>
+    <script src="webjars/bootstrap/5.2.0/js/bootstrap.min.js"></script>
 </head>
 
 <body class="bg-light">
 <nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="/">
-    My App
-  </a>
+    <a class="navbar-brand" href="/">
+        My App
+    </a>
 
 </nav>
-<div class="container text-center" style="margin-top:100px">
-  <div class="card card-body">
-    <h1>QR Code generator</h1>
-    <br>
-    <div class="card-columns">
+<div class="container text-center" style="margin-top:90px">
+    <div class="card card-body">
+        <h1>QR Code generator</h1>
+        <br>
+        <div class="bg-light">
 
-      <div class="card-body">
-        <form method="post" th:action="@{/getQrCode/}" th:object="${user}" class="form-control">
-          <input id="name" placeholder="Enter Name" required type="text"
-                 th:field="*{name}" class="form-control"/>
-          <br>
-          <input id="email" placeholder="Enter Email" required type="email"
-                 th:field="*{email}" class="form-control"/>
-          <br>
-          <input id="message" placeholder="Enter Message or query" required type="text"
-                 th:field="*{message}" class="form-control"/>
-          <br>
-          <input id="width" placeholder="Enter width for QR Code" required type="text"
-                 name="width" class="form-control"/>
-          <br>
-          <input id="height" placeholder="Enter height for QR Code" required type="text"
-                 name="height" class="form-control"/>
-          <br>
-          <input type="submit" value="Generate QR" class="form-control">
-        </form>
+            <div class="card-body">
+                <form method="post" th:object="${user}" class="form-control">
+                    <input id="name" placeholder="Enter Name" required type="text"
+                           th:field="*{name}" class="form-control"/>
+                    <br>
+                    <input id="email" placeholder="Enter Email" required type="email"
+                           th:field="*{email}" class="form-control"/>
+                    <br>
+                    <input id="message" placeholder="Enter Message or query" required type="text"
+                           th:field="*{message}" class="form-control"/>
+                    <br>
+                    <input id="width" placeholder="Enter width for QR Code" required type="number" min="10" max="500"
+                           name="width" class="form-control"/>
+                    <br>
+                    <input id="height" placeholder="Enter height for QR Code" required type="number" min="10" max="500"
+                           name="height" class="form-control"/>
+                    <br>
+                    <div class="row">
+                        <input type="submit" formaction="/getQrCode/" formmethod="post" value="Generate QR"
+                               class="form-control col btn btn-success">
+                        <input type="submit" formaction="/showQRCode/" formmethod="post" value="Show QR"
+                               class="form-control col btn btn-info">
+                    </div>
+                </form>
 
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 </div>
 

@@ -3,6 +3,8 @@ package com.fis.controller;
 import com.fis.dto.User;
 import com.fis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -72,8 +74,29 @@ public class HomeController {
             throw new RuntimeException(e);
         }
 
-
-
         return modelAndView;
+    }
+
+    @PostMapping("/showQRCode")
+    public ResponseEntity<byte[]> showQRCode(User user, @RequestParam(value = "width", defaultValue = "100") String width,
+                                     @RequestParam(value = "height", defaultValue = "200") String height) {
+//        ModelAndView modelAndView = new ModelAndView("responsePage");
+//        try {
+//            byte[] bytArray = userService.generateAndGetQrCode(user, Integer.parseInt(width), Integer.parseInt(height));
+//
+//            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytArray);
+//            BufferedImage image = ImageIO.read(byteArrayInputStream);
+//
+//            String absolutePath = ".//src//main//java//com//fis//res//QRCode"+ Calendar.getInstance().getTimeInMillis() +".png";
+//            File file = new File(absolutePath);
+//            ImageIO.write(image, "png", file);
+//            modelAndView.addObject("response",file.getPath());
+//
+//
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(userService.generateAndGetQrCode(user, Integer.parseInt(width), Integer.parseInt(height)));
     }
 }

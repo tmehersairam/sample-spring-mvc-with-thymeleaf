@@ -69,7 +69,8 @@ public class HomeController {
             String absolutePath = ".//src//main//java//com//fis//res//QRCode"+ Calendar.getInstance().getTimeInMillis() +".png";
             File file = new File(absolutePath);
             ImageIO.write(image, "png", file);
-            modelAndView.addObject("response",file.getPath());
+
+            modelAndView.addObject("response","You QR code is download at this path go and check :) <br>"+file.getAbsolutePath());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -80,22 +81,6 @@ public class HomeController {
     @PostMapping("/showQRCode")
     public ResponseEntity<byte[]> showQRCode(User user, @RequestParam(value = "width", defaultValue = "100") String width,
                                      @RequestParam(value = "height", defaultValue = "200") String height) {
-//        ModelAndView modelAndView = new ModelAndView("responsePage");
-//        try {
-//            byte[] bytArray = userService.generateAndGetQrCode(user, Integer.parseInt(width), Integer.parseInt(height));
-//
-//            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytArray);
-//            BufferedImage image = ImageIO.read(byteArrayInputStream);
-//
-//            String absolutePath = ".//src//main//java//com//fis//res//QRCode"+ Calendar.getInstance().getTimeInMillis() +".png";
-//            File file = new File(absolutePath);
-//            ImageIO.write(image, "png", file);
-//            modelAndView.addObject("response",file.getPath());
-//
-//
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
 
         return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(userService.generateAndGetQrCode(user, Integer.parseInt(width), Integer.parseInt(height)));
     }
